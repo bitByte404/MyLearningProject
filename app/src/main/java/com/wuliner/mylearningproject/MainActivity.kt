@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity() {
             it.setHomeAsUpIndicator(R.drawable.ic_menu)
         }
 
+        binding.fab.setOnClickListener {
+            Toast.makeText(this, "FAB clicked", Toast.LENGTH_SHORT).show()
+        }
+
         //将Call菜单项设置成默认选中
         binding.navView.setCheckedItem(R.id.navCall)
         //设置一个菜单项选中事件的监听器
