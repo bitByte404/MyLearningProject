@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         initFruits()//初始化水果数据
         val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding.recyclerView.layoutManager = layoutManager
         val adapter = RecyclerFruitAdapter(fruitList)
         binding.recyclerView.adapter = adapter
