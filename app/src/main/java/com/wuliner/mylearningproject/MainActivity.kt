@@ -19,6 +19,18 @@ class MainActivity : AppCompatActivity() {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeAsUpIndicator(R.drawable.ic_menu)
         }
+
+        //将Call菜单项设置成默认选中
+        binding.navView.setCheckedItem(R.id.navCall)
+        //设置一个菜单项选中事件的监听器
+        //当用户点击任意菜单项后，就会回调到传入的Lambda表达式
+        //可以在这里编写具体的逻辑处理
+        binding.navView.setNavigationItemSelectedListener {
+            //closeDrawers()方法可以将滑动菜单关闭
+            binding.drawerLayout.closeDrawers()
+            //返回true表示事件被处理
+            true
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
