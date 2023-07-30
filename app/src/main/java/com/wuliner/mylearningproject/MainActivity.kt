@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import com.google.android.material.snackbar.Snackbar
 import com.wuliner.mylearningproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,8 +21,12 @@ class MainActivity : AppCompatActivity() {
             it.setHomeAsUpIndicator(R.drawable.ic_menu)
         }
 
-        binding.fab.setOnClickListener {
-            Toast.makeText(this, "FAB clicked", Toast.LENGTH_SHORT).show()
+        binding.fab.setOnClickListener { view ->
+            Snackbar.make(view, "Deta deleted", Snackbar.LENGTH_SHORT)
+                .setAction("Undo") {
+                    Toast.makeText(this, "Data restored", Toast.LENGTH_SHORT).show()
+                }
+                .show()
         }
 
         //将Call菜单项设置成默认选中
