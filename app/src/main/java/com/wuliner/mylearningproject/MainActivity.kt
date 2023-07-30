@@ -1,5 +1,6 @@
 package com.wuliner.mylearningproject
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +10,7 @@ import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.wuliner.mylearningproject.databinding.ActivityMainBinding
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -54,6 +56,23 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = layoutManager
         val adapter = FruitAdapter(this, fruitList)
         binding.recyclerView.adapter = adapter
+
+        binding.swipeRefresh.setColorSchemeResources(R.color.colorPrimary)
+        binding.swipeRefresh.setOnRefreshListener {
+            refreshFruit(adapter)
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun refreshFruit(adapter: FruitAdapter) {
+        thread {
+            Thread.sleep(2000)
+            runOnUiThread {
+                initFruits()
+                adapter.notifyDataSetChanged()
+                binding.swipeRefresh.isRefreshing = false
+            }
+        }
     }
 
     private fun initFruits() {
