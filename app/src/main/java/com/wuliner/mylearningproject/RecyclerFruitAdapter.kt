@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerFruitAdapter(val fruitList: List<Fruit>) :
@@ -17,7 +18,21 @@ class RecyclerFruitAdapter(val fruitList: List<Fruit>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fruit_item, parent, false)
-        return ViewHolder(view)
+        val viewHolder = ViewHolder(view)
+
+        //给最外层布局注册点击事件
+        viewHolder.itemView.setOnClickListener {
+            val position = viewHolder.absoluteAdapterPosition
+            val fruit = fruitList[position]
+            Toast.makeText(parent.context, "you clicked view ${fruit.name}", Toast.LENGTH_SHORT).show()
+        }
+        //给ImageView注册点击事件
+        viewHolder.fruitImage.setOnClickListener {
+            val position = viewHolder.absoluteAdapterPosition
+            val fruit = fruitList[position]
+            Toast.makeText(parent.context, "you clicked image ${fruit.name}", Toast.LENGTH_SHORT).show()
+        }
+        return viewHolder
     }
 
     override fun getItemCount(): Int = fruitList.size
