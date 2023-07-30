@@ -3,6 +3,7 @@ package com.wuliner.mylearningproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.wuliner.mylearningproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +20,12 @@ class MainActivity : AppCompatActivity() {
         initFruits()//初始化水果数据
         val adapter = FruitAdapter(this, R.layout.fruit_item, fruitList)
         binding.listView.adapter = adapter
+
+        //给ListView添加点击事件
+        binding.listView.setOnItemClickListener { parent, view, position, id ->
+            val fruit = fruitList[position]
+            Toast.makeText(this, fruit.name, Toast.LENGTH_SHORT).show()
+        }
 
         setContentView(binding.root)
     }
