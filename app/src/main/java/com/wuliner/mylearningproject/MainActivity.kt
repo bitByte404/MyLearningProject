@@ -27,10 +27,13 @@ class MainActivity : AppCompatActivity() {
          * 第一个参数用于指定布局的列数，传入3表示将布局分为3列
          * 第二个参数用于指定布局的排列方向，传入StaggeredGridLayoutManager.VERTICAL，表示会将布局纵向排列
          */
-        val layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-        binding.recyclerView.layoutManager = layoutManager
+//        val layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+//        binding.recyclerView.layoutManager = layoutManager
+//        val adapter = RecyclerFruitAdapter(fruitList)
+//        binding.recyclerView.adapter = adapter
+
         val adapter = RecyclerFruitAdapter(fruitList)
-        binding.recyclerView.adapter = adapter
+        binding.viewPager.adapter = adapter
         setContentView(binding.root)
     }
 
